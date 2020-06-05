@@ -1,16 +1,62 @@
-import React from 'react';
-import './App.css';
-import Displayjobs from './DisplayJobs';
-import data from './data'
-import { Image } from "react-bootstrap";
-
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Displayjobs from "./Displayjobs";
+import allData from "./data";
+import { Image,Row } from "react-bootstrap";
 
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => setData(allData), []);
+
+  const [filterjobs, setFilterjobs] = useState([]);
+
+  const isTagInJobs = ({ role, level, tools, languages }) => {
+    if (filterjobs.length === 0) {
+      return true;
+    }
+    const tags = [role, level];
+
+    if (tools) {
+      tags.push(...tools);
+    }
+    if (languages) {
+      tags.push(...languages);
+    }
+    return tags.some((tag) => filterjobs.includes(tag));
+  };
+
+  const filteredData = data.filter(isTagInJobs);
+
+  const handleClick = (item) => {
+    setFilterjobs([...filterjobs, item]);
+  };
+  
+  const handleRemove =(chooseJob)=>{
+
+    setFilterjobs(filterjobs.filter(job => job !== chooseJob))
+
+  }
+
   return (
     <div className="App">
-     <Image className="img" src="../images/bg-header-desktop.svg" style={{ width:"100%" , height:156 }}/>
-     <Displayjobs data={data}/>
+      <Image
+        className="img"
+        src="../images/bg-header-desktop.svg"
+        style={{ width: "100%", height: 156 }}
+      />
+      <Row className='row-box-filter'>
+        {filterjobs.length > 0 && filterjobs.map(
+          job=><span 
+          onClick={()=>{handleRemove(job)}}
+          className='row-box-filter-items' 
+          >{job}</span>)}
+      </Row>
+      
+      {filteredData.map((job) => (
+        <Displayjobs job={job} key={job.id} handleClick={handleClick} />
+      ))}
     </div>
   );
 }

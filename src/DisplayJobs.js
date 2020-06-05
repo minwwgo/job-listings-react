@@ -1,20 +1,17 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
-const DisplayJobs = ({ data }) => {
-  return (
-    <Container>
-      {data.map((job) => {
-        const tags = [job.role, job.level];
+const Displayjobs = ({job,handleClick}) => {
+  const tags = [job.role, job.level];
 
         if (job.languages) {
           tags.push(...job.languages);
         }
         if (job.tools) {
-          tags.push(...job.tools);
-        }
-
-        return (
+          tags.push(...job.tools);}
+  
+  return (
+    <Container>
           <Row className ={`row-box ${job.featured && 'row-add'}`} key={job.id}>
             <Col className="row-img" >
               <Image src={job.logo} roundedCircle />
@@ -33,15 +30,15 @@ const DisplayJobs = ({ data }) => {
             <Col className="row-item-two" >
               {tags
                 ? tags.map((item, index) => {
-                    return <span key={index}>{item}</span>;
+                  return <span 
+                  onClick={()=>{handleClick(item)}}
+                  key={index}>{item}</span>;
                   })
                 : ""}
             </Col>
           </Row>
-        );
-      })}
-    </Container>
-  );
-};
-
-export default DisplayJobs;
+        </Container>
+      )
+    }
+    
+export default Displayjobs;

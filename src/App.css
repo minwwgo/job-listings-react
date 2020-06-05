@@ -12,6 +12,21 @@ body{
   padding:5px;
   border-radius: 5px;
 }
+.row-box-filter{
+  display:flex;
+  background-color:white;
+  margin: 10px;
+  padding:5px;
+  border-radius: 5px;
+
+}
+.row-box-filter-items{
+  color:teal;
+  font-weight: bold;
+  background-color:#c3edea;
+  margin:4px;
+  padding:5px;
+}
 .row-item-one{
   margin-left:20px;
   display:flex;
