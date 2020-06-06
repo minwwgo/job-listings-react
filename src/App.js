@@ -47,7 +47,8 @@ function App() {
         {filteredData.length > 0 && filterjobs.map(
           job=><span 
           onClick={()=>{handleRemove(job)}}
-          className='row-box-filter-items' 
+          className='row-box-filter-items'
+          key={job.id} 
           >{job}</span>)}
       </Row>
       
