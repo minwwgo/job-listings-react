@@ -10,7 +10,7 @@ function App() {
   const [filterjobs, setFilterjobs] = useState([]);
 
   const isTagInJobs = ({ role, level, tools, languages }) => {
-    if (filterjobs.length === 0) {
+    if (filterjobs.length === 0 ) {
       return true;
     }
     const tags = [role, level];
