@@ -13,7 +13,8 @@ const Displayjobs = ({job,handleClick}) => {
   return (
     <Container>
           <Row className ={`row-box ${job.featured && 'row-add'}`} key={job.id}>
-            <Col className="row-img" >
+           <div>
+           <Col className="row-img" >
               <Image src={job.logo} roundedCircle />
             </Col>
             <Col className="row-item-one" >
@@ -27,6 +28,10 @@ const Displayjobs = ({job,handleClick}) => {
                 {job.postedAt} . {job.contract} . {job.location}
               </p>
             </Col>
+            <hr/>
+           </div>
+           
+            
             <Col className="row-item-two" >
               {tags
                 ? tags.map((item, index) => {

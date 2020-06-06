@@ -8,9 +8,13 @@ body{
 .row-box{
   background-color:white;
   display:flex;
+  flex-wrap:wrap;
   margin: 10px;
   padding:5px;
   border-radius: 5px;
+}
+hr{
+  display:none;
 }
 .row-box-filter{
   display:flex;
@@ -77,4 +81,32 @@ text-transform: uppercase;
 }
 .row-add{
   border-left: 3px solid teal;
+}
+@media only screen and (max-width: 600px) {
+  .row-box{
+    margin-bottom:50px;
+    margin-top:40px;
+  }
+  .row-img{
+    margin-top:-40px;
+    margin-bottom:-40px;
+    
+  }
+  .row-item-one{
+    display:flex;
+    flex-wrap:wrap;
+    
+    margin-top: 40px;
+    
+  }
+  .row-item-two{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: flex-end;
+    margin-top:10px;
+    
+  }
+  hr{
+    display:block;
+  }
 }

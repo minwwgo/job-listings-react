@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Displayjobs from "./Displayjobs";
 import allData from "./data";
@@ -6,10 +6,7 @@ import { Image,Row } from "react-bootstrap";
 
 
 function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => setData(allData), []);
-
+  
   const [filterjobs, setFilterjobs] = useState([]);
 
   const isTagInJobs = ({ role, level, tools, languages }) => {
@@ -27,12 +24,12 @@ function App() {
     return tags.some((tag) => filterjobs.includes(tag));
   };
 
-  const filteredData = data.filter(isTagInJobs);
+  const filteredData = allData.filter(isTagInJobs);
 
   const handleClick = (item) => {
     setFilterjobs([...filterjobs, item]);
   };
-  
+
   const handleRemove =(chooseJob)=>{
 
     setFilterjobs(filterjobs.filter(job => job !== chooseJob))
@@ -47,7 +44,7 @@ function App() {
         style={{ width: "100%", height: 156 }}
       />
       <Row className='row-box-filter'>
-        {filterjobs.length > 0 && filterjobs.map(
+        {filteredData.length > 0 && filterjobs.map(
           job=><span 
           onClick={()=>{handleRemove(job)}}
           className='row-box-filter-items' 
